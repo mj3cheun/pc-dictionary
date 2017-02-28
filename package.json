@@ -1,0 +1,16 @@
+{
+  "name": "pc-dictionary",
+  "version": "1.0.0",
+  "description": "Tool for parsing BaderLab GMT gene sets and pathways into JSON",
+  "main": "mkPcDictionary.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Manfred Cheung @ UofT",
+  "license": "MIT",
+  "dependencies": {
+    "fs-promise": "^2.0.0",
+    "html-entities": "^1.2.0",
+    "lodash": "^4.17.4"
+  }
+}
