@@ -111,11 +111,29 @@ var symbol_enum = symbol_pathway_object.then(symbolObject => {
   return output;
 });
 
+// Use symbol_pathway_object to generate object where the key are symbols and the values are number of referenced pathways
+var symbol_weighted = symbol_pathway_object.then(symbolObject => {
+  var output = {};
+  Object.keys(symbolObject).sort().map(symbol => {
+    output[symbol] = symbolObject[symbol].length;
+  });
+  return output;
+});
+
 // Use pathway_object to generate enum object where the key are pathways
 var pathway_enum = pathway_object.then(pathwayObject => {
   var output = {};
   Object.keys(pathwayObject).sort().map(pathway => {
     output[pathway] = 1;
+  });
+  return output;
+});
+
+// Use pathway_object to generate object where the key are pathways and the values are number of referenced symbols
+var pathway_weighted = pathway_object.then(pathwayObject => {
+  var output = {};
+  Object.keys(pathwayObject).sort().map(pathway => {
+    output[pathway] = pathwayObject[pathway].data.length;
   });
   return output;
 });
@@ -184,8 +202,20 @@ symbol_enum.then(output => {
   writeToFile(file_name, output);
 });
 
-// Write symbol_enum to file
+// Write symbol_weighted to file
+symbol_weighted.then(output => {
+  var file_name = "symbol_weighted";
+  writeToFile(file_name, output);
+});
+
+// Write pathway_enum to file
 pathway_enum.then(output => {
   var file_name = "pathway_enum";
+  writeToFile(file_name, output);
+});
+
+// Write pathway_weighted to file
+pathway_weighted.then(output => {
+  var file_name = "pathway_weighted";
   writeToFile(file_name, output);
 });
